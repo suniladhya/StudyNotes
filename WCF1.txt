@@ -1,0 +1,12 @@
+AS WCF supports, MSMQ,
+
+A WCF service can have several end points, to satisfy diff client Requirements. 
+In the Config file 
+
+Project: As class Lib, Add item as WCF
+Namespace containing all the essential attributes and classes.
+System.ServiceModel
+
+By decorating the Interface with [ServiceContract], we are turning the interface in to a WCF Service.
+
+Making the Method available for the client as a part of the service, use [OperationContract]

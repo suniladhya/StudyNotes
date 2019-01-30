@@ -1,0 +1,156 @@
+System.Service
+Overview
+---------
+WCF is a platform for building distributed businesses and deploying services among various endpoints in Windows. 
+WCF was initially called name “Indigo” and we can build service-oriented applications and provide interoperability.
+
+Microsoft first released the WCF bundle with .NET Framework 3.0 in Visual Studio .NET 2008. 
+It provides many useful features for developing services like hosting service instance management, asynchronous calls, reliability, transaction management, disconnected queued calls and security.
+
+Microsoft was the second release of the WCF bundle with .NET Framework 3.5 in Visual Studio .NET 2008. 
+This version supported additional tools and communication options.
+
+Microsoft's third release of the WCF bundle came with .NET Framework 4.0 in Visual Studio.NET 2010. 
+This version released a couple of features, like configuration changes, a few extensions, discovery and routers.
+
+WCF also supports the Windows Azure Platform and supported operating systems such as Windows XP, Windows Server 2003, Windows Vista, Windows Server 2008, Windows 7 and later versions.
+
+WCF is a combination of multiple existing .NET Technologies like ASMX, .NET Remoting, Enterprise Services, WSE and MSMQ.
+
+Advantages of WCF
+=================
+
+WCF provides better reliability and security compared to ASMX Web services. 
+
+In WCF, there is no need to make much of a change to code to use the security model and alter the binding.
+
+Small changes in the configuration file will match your requirements.
+
+WCF provides interoperability between services.
+Disadvantage of WCF
+===================
+WCF does not support method overloading functions.
+
+Service Contracts
+=================
+clients need to know what operations are availabl to invoke.
+service contracts defines the operation of the service.
+A service contract is a simply an interface with method members only.
+Attributes used:
+Service Contract
+Operation Contract
+
+Note: Method overloading is not allowed. However overloading can be used with unique name in operation contract
+it can be used with providing a unique name for the operation.
+
+Plural Sight:
+Service Code should be not part of the contract
+
+End Points:
+All Communication in a wcf service occours through the end points of a service.
+Consist of 4 properties: A, B, C, Behaviour(where to find the end Point, How a client commnicate with end point, Operations available, Behaviours available(implement details of end point))
+
+Data Contracts:(system.runTime.Seriallization)
+==============
+Convention: end Class Name with "Data"
+To make a class Data Contract: [DataContract]
+Data Contract is just a seriallizer.
+DC: Is a opt-In Seriallizer.
+
+[Opt-in]
+[.Net 4.0 on wards: If DataContract is not there, All the public members are automatic seriallizable=>Automatic Data contract and Data member
+
+It is a formal agreement between a service and a client. it describes the data to be exchanged.
+
+[Opt-In]
+Service Contracts: DEFINES the Operations available
+=================
+when a class is decorated with 
+
+Hosting Types:
+WebHosting
+Self Hosting
+
+Self Hosting:
+============
+1 to 1 Hosting
+
+net TCP Binding: Inside the Enterprise
+net.tcp://localhost:8009/GeoService => Same Name as the Service Contract Name
+
+ServiceHost hostGeoManager = new ServiceHost(typeof(GeoLib.Services.GeoManager));
+
+string address = "net.tcp://localhost:8009/GeoService";
+Binding binding = new NetTcpBinding();
+Type contract = typeof(IGeoService);
+hostGeoManager.AddServiceEndpoint(contract, binding, address);
+
+hostGeoManager.Open();
+hostGeoManager.Close();
+
+Web Hosting:
+===========
+Hosting handled by IIS
+Limited to HTTP (unless WAS is used)
+
+SVC file Per Service
+:Requires system.model.Activation
+
+
+Using custom host factory, u will be using it and feeding it to iis
+
+<services>
+      <service name="GeoLib.Services.GeoManager">
+        <endpoint
+                  address=""
+                  binding="netTcpBinding"
+                  contract="GeoLib.Contracts.IGeoService"
+                  name="TCPGeoService"
+          />
+      <endpoint
+                  address=""
+                  binding="webHttpBinding"
+                  contract="GeoLib.Contracts.IGeoService"
+                  name="HttpGeoService"
+          />
+      </service>
+    </services>
+      <serviceHostingEnvironment>
+        <serviceActivations>
+          <add service="GeoLib.Services.GeoManager"
+               relativeAddress="GeoService.svc"
+        factory="GeoLib.WebHost.CustomHostFactory"/>
+        </serviceActivations>
+      </serviceHostingEnvironment>
+
+
+IIS takes care of instantiating the service host instance for each service
+Class Responcsible: ServiceHostFactory
+It does the Following Works:
+a. Receives the type of Service(For which host to be created)
+b. Creates the Instance of serviceHost
+c. Returns it to the IIS
+However we can Override the Default behaviour by creating a CustomService Host Factory
+
+factory="youCustom"
+To add a svc, system.model.Activation is required
+To have a customHost Factory, system.model.Activation is required
+
+==========================
+Other than wshttpBinding
+==========================
+https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/hosting-in-windows-process-activation-service
+
+open VS in Admin mode
+change to Local IIS
+Create Virtual Directory
+
+Open CMD in Admin Mode, 
+CD inetsrv
+To Add ntTCP Binding
+appcmd.exe set site "Default Web Site" -+bindings.[protocol='net.tcp',bindingInformation='808:*'] 
+
+
+
+
+
