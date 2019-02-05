@@ -9,7 +9,7 @@ Enhancing and adding the missed Connections
 Abstraction:
 ------------
 Concept of Abstraction and Enscapsulation are Coplementary.
-Showing What is Necessary Detais.
+Showing What is Necessary Details.
 
 The Process of Hiding the irrelevant infomation and showing the Relevant information of a specific object to the user.
 **It is thought process or modelling.
@@ -34,6 +34,7 @@ A parent class is at ahigher level of hierarchy then the child Class.
 Four types of InHeritance: Single,Hierarchical, Multilevel, Multiple(Not allowed)
 
 CTOR:Base Classs first, than Child Class.
+STATIC CTOR: Child Class First, than Base Class
 Sealed: Classes that can not be Inherited are the Sealed Classes.
 
 ------------------------------------------------------------------------
