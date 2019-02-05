@@ -1,0 +1,47 @@
+OOPS:
+
+Understanding the Ambigutiy: who, when, where, how, what, why
+Identify the Core Objects
+Identify the Relation between the core Objects
+Enhancing and adding the missed Connections
+
+------------------------------------------------------------------------
+Abstraction:
+------------
+Concept of Abstraction and Enscapsulation are Coplementary.
+Showing What is Necessary Detais.
+
+The Process of Hiding the irrelevant infomation and showing the Relevant information of a specific object to the user.
+**It is thought process or modelling.
+
+------------------------------------------------------------------------
+Enscalsulation:
+---------------
+Hiding the Complexity.
+Enscapsulation can be achieved using the accessors and mutators/by using the 
+Properties
+(Accessor/ Mutator): privatevariable and Public methods
+Properties:Private property accessed sing the Public Properties.
+
+**Implementaion of the Modelling/ Simplification and 
+
+------------------------------------------------------------------------
+Inheritance:
+------------
+To implement reusability and avoid Redundant code, Inheritance is used.
+A parent class is at ahigher level of hierarchy then the child Class.
+
+Four types of InHeritance: Single,Hierarchical, Multilevel, Multiple(Not allowed)
+
+CTOR:Base Classs first, than Child Class.
+Sealed: Classes that can not be Inherited are the Sealed Classes.
+
+------------------------------------------------------------------------
+Polymorphism:
+-------------
+Overloading: Method overloading can be achieved by changing the type, number, order of inputs
+Why and When: An approach to define multiple behaviour.
+
+Changing the Behaviour based on the inputs.
+
+OverRiding: (Also called Dynamic polymorphism)
